@@ -32,7 +32,7 @@ VzenseManager::VzenseManager(int32_t device_index, const string &camera_name) :
 GET:
     int checkDeviceSec = 0;
 	PsReturnStatus status = Ps2_GetDeviceCount(&device_count);
-	if (status != PsReturnStatus::PsRetOK)
+	if (status != PsReturnStatus::PsRetOK || device_count < 1)
 	{
         ROS_INFO("check device cost:%d second.", checkDeviceSec++);
         ros::Duration(1).sleep();
