@@ -17,9 +17,9 @@ roslaunch vzense_camera vzense_camera.launch
 
 ```bash
 cd ~/catkin_ws/src
-git clone https://github.com/Vzense/BaseSDK_ROS_wrapper
+git clone https://github.com/Vzense/Vzense_ROS_Plugin_Linux
 cd ..
-sudo cp src/BaseSDK_ROS_wrapper/dependencies/Lib/libImgPreProcess.so /usr/lib
+sudo cp src/Vzense_ROS_Plugin_Linux/dependencies/Lib/libImgPreProcess.so /usr/lib
 catkin build vzense_camera
 source devel/setup.bash
 ```
