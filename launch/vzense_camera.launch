@@ -1,0 +1,18 @@
+<launch>
+    <!-- device_index used in  Ps2_GetDeviceInfo -->
+    <arg name="device_index" default="0"/>
+    <!-- dataMode used in  Ps2_SetDataMode -->
+    <arg name="dataMode" default="0"/>
+    <!-- depth_range used in  Ps2_SetDepthRange -->
+    <arg name="depth_range" default="0"/>
+    <!-- rgb_resolutin used in  Ps2_SetRGBResolution -->
+    <arg name="rgb_resolution" default="3"/>
+    
+
+    <node pkg="vzense_camera" type="vzense_camera" name="vzense_manager" output="screen" required="true">
+        <param name="device_index" value="$(arg device_index)" type="int"/>
+        <param name="dataMode" value="$(arg dataMode)" type="int"/>
+        <param name="depth_range" value="$(arg depth_range)" type="int"/>
+        <param name="rgb_resolution" value="$(arg rgb_resolution)" type="int"/>
+    </node>
+</launch>
