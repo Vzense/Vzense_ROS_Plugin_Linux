@@ -183,7 +183,7 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetPulseCount(PsDeviceHandle device, uint
 * @brief 		Sets the pulse count for the device specified by <code>device</code>.
 * @param[in] 	device			The handle of the device on which to set the pulse count. 
 * @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
-* @param[in] 	pulseCount 		The pulse count value to set.
+* @param[in] 	pulseCount 		The pulse count value to set.For the range 3 and 4,the value is in the range [0,260],for the other range,the value is in the range [0,600].
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetPulseCount(PsDeviceHandle device, uint32_t sessionIndex, uint16_t pulseCount);
@@ -201,7 +201,7 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetGMMGain(PsDeviceHandle device, uint32_
 * @brief 		Sets the device GMM gain on a device.
 * @param[in]	device			The handle of the device on which to set the GMM gain.
 * @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
-* @param[in] 	gmmgain			The GMM gain value to set. See ::PsGMMGain for more information.
+* @param[in] 	gmmgain			The GMM gain value to set. See ::PsGMMGain for more information.The GMM gain value is in the range [0,4095].
 * @return		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetGMMGain(PsDeviceHandle device, uint32_t sessionIndex, PsGMMGain gmmgain);
@@ -499,11 +499,18 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetMapperEnabledRGBToIR(PsDeviceHandle de
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetMapperEnabledRGBToIR(PsDeviceHandle device, uint32_t sessionIndex, bool *bEnabled);
 /**
-* @brief 		Set hotplug status callback function
+* @brief 		Sets hotplug status callback function
 * @param[in]	pCallback		Pointer to the callback function. See ::PtrHotPlugStatusCallback 
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetHotPlugStatusCallback(PtrHotPlugStatusCallback pCallback);
+/**
+* @brief 		Sets hotplug status callback function for c plus plus
+* @param[in]	pCallback		Pointer to the callback function. See ::PtrHotPlugStatusCallback
+* @param[in]	contex		    Pointer to the object of C++ class
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetHotPlugStatusCallback_(PtrHotPlugStatusCallback_ pCallback, void* contex);
 /**
 * @brief 		Gets the serial number.
 * @param[in] 	device			The handle of the device on which to set the pulse count.
@@ -544,4 +551,16 @@ VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetDSPEnabled(PsDeviceHandle device, uint
 * @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
 */
 VZENSE_C_API_EXPORT PsReturnStatus Ps2_GetDSPEnabled(PsDeviceHandle device, uint32_t sessionIndex, bool *bEnabled);
+
+/**
+* @brief 		Set the waittime of read next frame.
+* @param[in] 	device			The handle of the device on which to enable or disable the feature.
+* @param[in] 	sessionIndex	The index of the session. See ::Ps2_StartStream() & ::Ps2_StopStream() api for more information.
+* @param[in] 	time 			The unit is millisecond, the value is in the range (0,65535) and the default value is 350 millisecond.
+* You can change the value according to the frame rate. For example,the frame rate is 30, so the theoretical waittime interval is 33ms, but if set the time value is 20ms,
+* it means the max wait time is 20 ms when capturing next frame, so when call the Ps2_ReadNextFrame, it may return PsRetReadNextFrameTimeOut(-11).
+* so the value range that recommended is [50.350].
+* @return 		::PsRetOK		if the function succeeded, or one of the error values defined by ::PsReturnStatus.
+*/
+VZENSE_C_API_EXPORT PsReturnStatus Ps2_SetWaitTimeOfReadNextFrame(PsDeviceHandle device, uint32_t sessionIndex, uint16_t time);
 #endif /* VZENSE_API_305_H */

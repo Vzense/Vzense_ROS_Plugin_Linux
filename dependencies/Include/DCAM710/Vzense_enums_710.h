@@ -104,11 +104,12 @@ typedef enum{
 	PsRetPropertyPointerIsNull = -8, //!< The input property value buffer pointer is null.
 	PsRetPropertySizeNotEnough = -9, //!< The input property value buffer size is too small to store the specified property value.
 	PsRetInvalidDepthRange = -10,    //!< The input depth range mode is invalid.
-	PsRetReadNextFrameError = -11,   //!< An error occurred when capturing the next image frame.
+	PsRetReadNextFrameTimeOut = -11, //!< Capture the next image frame time out.
 	PsRetInputPointerIsNull = -12,   //!< An input pointer parameter is null.
 	PsRetCameraNotOpened = -13,      //!< The camera has not been opened.
 	PsRetInvalidCameraType = -14,    //!< The specified type of camera is invalid.
 	PsRetInvalidParams = -15,        //!< One or more of the parameter values provided are invalid.
+	PsRetNoAdapterConnected = -100,  //!< There is no adapter connected
 
 	PsRetOthers = -255,	             //!< An unknown error occurred.
 }PsReturnStatus;
@@ -181,10 +182,12 @@ typedef enum {
 typedef enum
 {
 	NONE,
-	DCAMUPDATE = 1,
 	DCAM305 = 305,
 	DCAM500 = 500,
+	CSI100	= 501,
 	DCAM510 = 510,
+	DCAM550U = 550,
+	DCAM550P = 551,
 	DCAM710 = 710,
 	DCAM800 = 800,
 	DCAM_MIPI = 801,
