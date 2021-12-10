@@ -5,7 +5,7 @@ The goal of this project is to help developers easily use the Vzense TOF camera 
 
 - ROS: melodic and newer
 - OS: Ubuntu 18.04
-- vzense linux sdk:3.2.8
+- vzense linux base sdk:3.4.4
 
 Note: Before using, please refer to https://github.com/Vzense/Vzense_SDK_Linux to update the vzense linux sdk to the latest version
 
