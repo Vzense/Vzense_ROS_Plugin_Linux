@@ -32,4 +32,5 @@ source devel/setup.bash
 - DCAM800LITE
 - DCAM305
 - DCAM500
+- DCAM550
 
