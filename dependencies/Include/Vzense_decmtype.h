@@ -3,7 +3,7 @@
 
 //#define DCAM_305  //only for DCAM305
 //#define DCAM_550	//for DCAM550U/DCAM550P/DCAM800/DCAM800LITE
-//#define DCAM_560	//for DCAM560/DCAM560CPRO/DCAM560CLITE
-#define DCAM_710    //only for DCAM710
+#define DCAM_560	//for DCAM560/DCAM560CPRO/DCAM560CLITE
+//#define DCAM_710    //only for DCAM710
 
 #endif /* VZENSE_DECMTYPE_H */

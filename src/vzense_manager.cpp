@@ -76,7 +76,7 @@ GET:
 }
 
 void VzenseManager::set_rgbResolution(const PsResolution resolutionIndex) {
-    const int valid_resolutions[4][2] = {{1920, 1080}, {1280, 720}, {640,  480}, {640,  360}};
+    const int valid_resolutions[6][2] = {{1920, 1080}, {1280, 720}, {640,  480}, {640,  360},{1600,  1200},{800,  600}};
 
     PsResolution invalidResolutionIndex = (PsResolution)(resolutionIndex%4);
     std::string message("Resolution " + to_string(valid_resolutions[invalidResolutionIndex][0]) + "x" + to_string(valid_resolutions[invalidResolutionIndex][1]));
@@ -142,7 +142,7 @@ void VzenseManager::set_DataMode(const PsDataMode dataMode){
 
     this->data_mode_ = dataMode;
     // Enable depth to rgb frame alignment in the API，then alignedDepth becomes available
-    if( PsDepthAndRGB_30 == dataMode || PsDepthAndIR_15_RGB_30 == dataMode )
+    if( PsDepthAndRGB_30 == dataMode || PsDepthAndIRAndRGB_30 == dataMode )
     {
         checkPsReturnStatus(Ps2_SetMapperEnabledRGBToDepth(deviceHandle_, sessionIndex_, true),
                             "Could not enable depth to rgb alignment");

@@ -6,7 +6,7 @@
     <!-- depth_range used in  Ps2_SetDepthRange -->
     <arg name="depth_range" default="0"/>
     <!-- rgb_resolutin used in  Ps2_SetRGBResolution -->
-    <arg name="rgb_resolution" default="3"/>
+    <arg name="rgb_resolution" default="2"/>
     
 
     <node pkg="vzense_camera" type="vzense_camera" name="vzense_manager" output="screen" required="true">
