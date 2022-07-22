@@ -33,4 +33,5 @@ source devel/setup.bash
 - DCAM305
 - DCAM500
 - DCAM550
+- DCAM560
 
