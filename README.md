@@ -13,6 +13,8 @@ Note: Before using, please refer to https://github.com/Vzense/Vzense_SDK_Linux t
 
 ```bash
 roslaunch vzense_camera vzense_camera.launch
+roslaunch vzense_camera vzense_pointCloudxyz.launch
+roslaunch vzense_camera vzense_pointCloudxyzrgb.launch
 ```
 
 ## Install

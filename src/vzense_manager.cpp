@@ -59,11 +59,6 @@ GET:
     status= Ps2_StartStream(deviceHandle_, sessionIndex_);
     ROS_INFO_STREAM( "Start Depth Frame status: " << status);
 
-    //Set PixelFormat as PsPixelFormatRGB888 for regular display
-    checkPsReturnStatus(Ps2_SetColorPixelFormat(deviceHandle_, sessionIndex_, PsPixelFormatBGR888),
-                      "Could not set pixel format");
-    ROS_INFO("Set Pixel Format to BGR888 for device %d", this->device_index_);
-
     // Set synchronisation between rgb and depth
     checkPsReturnStatus(Ps2_SetSynchronizeEnabled(deviceHandle_, sessionIndex_, true),
                       "Could not enable sensor synchronisation between rgb and depth sensors");
@@ -71,6 +66,8 @@ GET:
 
     checkPsReturnStatus(Ps2_SetRGBDistortionCorrectionEnabled(deviceHandle_, sessionIndex_, true),
                       "Could not enable rgb distortion correction");
+    checkPsReturnStatus(Ps2_SetDepthDistortionCorrectionEnabled(deviceHandle_, sessionIndex_, true),
+                      "Could not enable depth distortion correction");
     Ps2_SetSpatialFilterEnabled(deviceHandle_, sessionIndex_, true);
         ROS_INFO("Enabled distortion correction for device %d", this->device_index_);
 }
@@ -265,7 +262,7 @@ bool VzenseManager::fillImagePtr(const ros::Time& time, const PsFrameType type, 
             break;
         case PsRGBFrame:
             cvMatType = CV_8UC3;
-            imageEncodeType = sensor_msgs::image_encodings::TYPE_8UC3;
+            imageEncodeType = sensor_msgs::image_encodings::BGR8;
             break;
         default:
             return ret;
